@@ -44,13 +44,13 @@ class RetentionPolicy
     /**
      * Creates object from $parsedResponse.
      *
-     * @param array $parsedResponse XML response parsed into array.
-     *
-     * @internal
+     * @param array|null $parsedResponse XML response parsed into array.
      *
      * @return MicrosoftAzure\Storage\Common\Models\RetentionPolicy
+     *@internal
+     *
      */
-    public static function create(array $parsedResponse = null)
+    public static function create(?array $parsedResponse = null)
     {
         $result = new RetentionPolicy();
         $result->setEnabled(Utilities::toBoolean($parsedResponse['Enabled']));

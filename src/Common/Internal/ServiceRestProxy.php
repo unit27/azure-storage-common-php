@@ -337,7 +337,7 @@ class ServiceRestProxy extends RestProxy
      * @param  string         $path           URL path
      * @param  array|int      $expected       Expected Status Codes.
      * @param  string         $body           Request body
-     * @param  ServiceOptions $serviceOptions Service options
+     * @param ServiceOptions|null $serviceOptions Service options
      *
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
@@ -349,7 +349,7 @@ class ServiceRestProxy extends RestProxy
         $path,
         $expected = Resources::STATUS_OK,
         $body = Resources::EMPTY_STRING,
-        ServiceOptions $serviceOptions = null
+        ?ServiceOptions $serviceOptions = null
     ) {
         if ($serviceOptions == null) {
             $serviceOptions = new ServiceOptions();
@@ -556,11 +556,11 @@ class ServiceRestProxy extends RestProxy
      * Adds metadata elements to headers array
      *
      * @param array $headers  HTTP request headers
-     * @param array $metadata user specified metadata
+     * @param array|null $metadata user specified metadata
      *
      * @return array
      */
-    protected function addMetadataHeaders(array $headers, array $metadata = null)
+    protected function addMetadataHeaders(array $headers, ?array $metadata = null)
     {
         Utilities::validateMetadata($metadata);
 
@@ -573,11 +573,11 @@ class ServiceRestProxy extends RestProxy
     /**
      * Generates metadata headers by prefixing each element with 'x-ms-meta'.
      *
-     * @param array $metadata user defined metadata.
+     * @param array|null $metadata user defined metadata.
      *
      * @return array
      */
-    public function generateMetadataHeaders(array $metadata = null)
+    public function generateMetadataHeaders(?array $metadata = null)
     {
         $metadataHeaders = array();
 

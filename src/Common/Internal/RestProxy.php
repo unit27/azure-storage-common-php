@@ -52,9 +52,9 @@ class RestProxy
     /**
      * Initializes new RestProxy object.
      *
-     * @param Serialization\ISerializer $dataSerializer The data serializer.
+     * @param Serialization\ISerializer|null $dataSerializer The data serializer.
      */
-    public function __construct(Serialization\ISerializer $dataSerializer = null)
+    public function __construct(?Serialization\ISerializer $dataSerializer = null)
     {
         $this->middlewares    = array();
         $this->dataSerializer = $dataSerializer;

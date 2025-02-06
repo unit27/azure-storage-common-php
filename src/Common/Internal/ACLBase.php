@@ -105,13 +105,13 @@ abstract class ACLBase
      * Construct the signed identifiers from a given parsed XML in array
      * representation.
      *
-     * @param array|null  $parsed The parsed XML into array representation.
-     *
-     * @internal
+     * @param array|null $parsed The parsed XML into array representation.
      *
      * @return void
+     *@internal
+     *
      */
-    public function fromXmlArray(array $parsed = null)
+    public function fromXmlArray(?array $parsed = null)
     {
         $this->setSignedIdentifiers(array());
 

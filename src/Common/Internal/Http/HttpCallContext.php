@@ -71,7 +71,7 @@ class HttpCallContext
     /**
      * Gets method.
      *
-     * @return string
+     * @return string|null
      */
     public function getMethod()
     {
@@ -149,7 +149,7 @@ class HttpCallContext
     /**
      * Gets uri.
      *
-     * @return string
+     * @return string|null
      */
     public function getUri()
     {
@@ -173,7 +173,7 @@ class HttpCallContext
     /**
      * Gets path.
      *
-     * @return string
+     * @return string|null
      */
     public function getPath()
     {
@@ -222,7 +222,7 @@ class HttpCallContext
     /**
      * Gets body.
      *
-     * @return string
+     * @return string|null
      */
     public function getBody()
     {
