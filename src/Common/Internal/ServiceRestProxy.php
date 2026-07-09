@@ -315,16 +315,40 @@ class ServiceRestProxy extends RestProxy
         $request = new Request(
             $method,
             $uri,
-            $headers,
+            self::normalizeHeaderValues($headers),
             $actualBody
         );
 
         //add content-length to header
         $bodySize = $request->getBody()->getSize();
         if ($bodySize > 0) {
-            $request = $request->withHeader('content-length', $bodySize);
+            $request = $request->withHeader('content-length', (string) $bodySize);
         }
         return $request;
+    }
+
+    /**
+     * Normalize header values for compatibility with guzzlehttp/psr7 >= 2.11.
+     *
+     * @param  array $headers The header field of the request
+     *
+     * @return array
+     */
+    private static function normalizeHeaderValues(array $headers)
+    {
+        foreach ($headers as $header => $value) {
+            if (is_array($value)) {
+                foreach ($value as $index => $item) {
+                    if (is_scalar($item) || is_null($item)) {
+                        $headers[$header][$index] = (string) $item;
+                    }
+                }
+            } elseif (is_scalar($value) || is_null($value)) {
+                $headers[$header] = (string) $value;
+            }
+        }
+
+        return $headers;
     }
 
     /**
